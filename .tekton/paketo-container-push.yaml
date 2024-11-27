@@ -2,18 +2,19 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   annotations:
-    build.appstudio.openshift.io/repo: https://github.com/konflux-ci/paketo-container?rev={{revision}}
+    build.appstudio.openshift.io/repo: https://github.com/MartinBasti/paketo-container?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
       == "main"
+  creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: paketo-container
-    appstudio.openshift.io/component: paketo-container
+    appstudio.openshift.io/application: test-prefetch-permissions
+    appstudio.openshift.io/component: paketo-container-ta
     pipelines.appstudio.openshift.io/type: build
-  name: paketo-container-on-push
-  namespace: konflux-build-pipeli-tenant
+  name: paketo-container-ta-on-push
+  namespace: mbasti-tenant
 spec:
   params:
     - name: dockerfile
