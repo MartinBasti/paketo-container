@@ -25,6 +25,25 @@ spec:
     value: quay.io/redhat-user-workloads/mbasti-tenant/paketo-container-ta:{{revision}}
   - name: dockerfile
     value: Dockerfile
+  - name: prefetch-input
+    value: |
+        [{"type": "gomod", "path": "toml"},
+         {"type": "gomod", "path": "jam"},
+         {"type": "gomod", "path": "create-package"},
+         {"type": "gomod", "path": "cosign"},
+         {"type": "gomod", "path": "syft"},
+         {"type": "gomod", "path": "pack"},
+         {"type": "rpm", "path": "."}]
+  - name: hermetic
+    value: "true"
+  - name: dev-package-managers
+    value: "true"
+  - name: enableSymlinkCheck
+    value: "false"
+  - name: cachi2-log-level
+    value: "debug"
+  - name: build-image-index
+    value: "false"
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
